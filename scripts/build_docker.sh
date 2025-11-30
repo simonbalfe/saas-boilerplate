@@ -1,0 +1,16 @@
+.\scripts\load_env.ps1
+
+docker stop $(docker ps -q)
+
+docker run -p 3000:3000 `
+  -e UPSTASH_REDIS_REST_TOKEN="$env:UPSTASH_REDIS_REST_TOKEN" `
+  -e UPSTASH_REDIS_REST_URL="$env:UPSTASH_REDIS_REST_URL" `
+  -e STRIPE_SECRET_KEY="$env:STRIPE_SECRET_KEY" `
+  -e RESEND_API_KEY="$env:RESEND_API_KEY" `
+  -e RESEND_FROM="$env:RESEND_FROM" `
+  -e STRIPE_PRICE_ID="$env:STRIPE_PRICE_ID" `
+  -e STRIPE_WEBHOOK_SECRET="$env:STRIPE_WEBHOOK_SECRET" `
+  -e SUPABASE_SERVICE_ROLE_KEY="$env:SUPABASE_SERVICE_ROLE_KEY" `
+  -e DATABASE_URL="$env:DATABASE_URL" `
+  -e NODE_ENV="development"`
+  saas-template
