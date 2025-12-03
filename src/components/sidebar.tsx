@@ -1,6 +1,6 @@
 "use client"
 
-import { LayoutDashboard, Settings, Menu, Zap, Crown } from 'lucide-react'
+import { LayoutDashboard, Settings, Menu, Zap, Crown, CheckSquare } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -8,6 +8,7 @@ import { useCheckout } from '@/src/hooks/use-checkout'
 import { checkSubscription } from '@/src/actions/check-subscription'
 import { useUser } from '@/src/hooks/use-user'
 import { Avatar } from '@/src/components/molecules'
+import { ThemePicker } from './theme-picker'
 
 export const Sidebar = () => {
   const pathname = usePathname()
@@ -30,6 +31,7 @@ export const Sidebar = () => {
 
   const navItems = [
     { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+    { href: '/todos', icon: CheckSquare, label: 'Todos' },
   ]
 
   const isActive = (path: string) => {
@@ -88,6 +90,9 @@ export const Sidebar = () => {
           </nav>
 
           {/* User Section */}
+          <div className="p-4 border-t border-base-300">
+             <ThemePicker />
+          </div>
           {loading || (user && isSubscribed === null) ? (
             <div className="p-4 border-t border-base-300">
               <div className="skeleton h-14 w-full"></div>

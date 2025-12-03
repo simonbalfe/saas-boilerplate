@@ -166,8 +166,8 @@ export const Dashboard = () => {
                   </label>
                 </div>
 
-                <select className="select select-bordered w-full max-w-xs">
-                  <option disabled selected>Pick your favorite anime</option>
+                <select className="select select-bordered w-full max-w-xs" defaultValue="Pick your favorite anime">
+                  <option disabled>Pick your favorite anime</option>
                   <option>One Piece</option>
                   <option>Naruto</option>
                   <option>Death Note</option>

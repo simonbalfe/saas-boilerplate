@@ -1,6 +1,7 @@
 "use client"
 
 import { useUser } from "@/src/hooks/use-user"
+import { useEffect } from "react"
 import { User, Mail, Calendar, LogOut, Trash2 } from "lucide-react"
 import { authClient } from '@/src/services/better-auth/auth-client'
 import { deleteCurrentUser } from '@/src/actions/delete-users'
@@ -11,22 +12,16 @@ export function Settings() {
   const { user, loading } = useUser()
   const router = useRouter()
 
-  if (loading) {
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push('/auth')
+    }
+  }, [user, loading, router])
+
+  if (loading || !user) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-base-200">
         <span className="loading loading-spinner loading-lg text-primary"></span>
-      </div>
-    )
-  }
-
-  if (!user) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-base-200">
-        <div className="text-center space-y-4">
-          <h2 className="text-2xl font-bold">Not Authenticated</h2>
-          <p className="text-base-content/60">Please sign in to view your settings.</p>
-          <a href="/auth" className="btn btn-primary">Sign In</a>
-        </div>
       </div>
     )
   }
@@ -72,7 +67,7 @@ export function Settings() {
               size="lg"
             />
             <div className="space-y-1">
-              <h3 className="text-xl font-bold">{user.name}`</h3>
+              <h3 className="text-xl font-bold">{user.name}</h3>
               <p className="text-base-content/60">{user.email}</p>
               <div className="badge badge-neutral badge-sm mt-1">User</div>
             </div>

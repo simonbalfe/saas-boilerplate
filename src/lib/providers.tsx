@@ -3,6 +3,7 @@
 import { usePathname, useSearchParams } from "next/navigation"
 import { useEffect, Suspense } from "react"
 import { usePostHog } from 'posthog-js/react'
+import { ThemeProvider } from 'next-themes'
 
 import posthog from 'posthog-js'
 import { PostHogProvider as PHProvider } from 'posthog-js/react'
@@ -20,8 +21,10 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
 
     return (
         <PHProvider client={posthog}>
-            <SuspendedPostHogPageView />
-            {children}
+            <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
+                <SuspendedPostHogPageView />
+                {children}
+            </ThemeProvider>
         </PHProvider>
     )
 }

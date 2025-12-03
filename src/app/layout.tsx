@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning data-theme="lofi">
+    <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning className='font-primary'>
         <PostHogProvider>
           <LayoutContent>{children}</LayoutContent>
