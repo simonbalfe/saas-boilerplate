@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import '@/src/globals.css'
 import { PostHogProvider } from '@/src/lib/providers'
-import { Navbar } from '@/src/components/navbar'
+import { LayoutContent } from '@/src/components/layout-content'
 
 export const metadata: Metadata = {
   title: 'dashboard template',
@@ -23,11 +23,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning data-theme="corporate">
+    <html lang="en" suppressHydrationWarning data-theme="lofi">
       <body suppressHydrationWarning className='font-primary'>
         <PostHogProvider>
-          <Navbar/>
-          {children}
+          <LayoutContent>{children}</LayoutContent>
         </PostHogProvider>
       </body>
     </html>
