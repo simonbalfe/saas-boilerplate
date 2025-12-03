@@ -80,9 +80,9 @@ export const Home = () => {
                 <div>
                     <h2 className="text-lg font-medium mb-4 text-foreground">Shadows</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="p-4 bg-card border rounded-lg shadow-sm">Primary Shadow</div>
-                        <div className="p-4 bg-card border rounded-lg shadow-md">Secondary Shadow</div>
-                        <div className="p-4 bg-card border rounded-lg shadow-lg">Accent Shadow</div>
+                        <div className="p-4 bg-card rounded-lg shadow-sm">Primary Shadow</div>
+                        <div className="p-4 bg-card rounded-lg shadow-md">Secondary Shadow</div>
+                        <div className="p-4 bg-card rounded-lg shadow-lg">Accent Shadow</div>
                     </div>
                 </div>
 

@@ -2,11 +2,6 @@
 
 import { useUser } from "@/src/hooks/use-user"
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card"
-import { Badge } from "@/src/components/ui/badge"
-import { Button } from "@/src/components/ui/button"
-import { Input } from "@/src/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/src/components/ui/select"
 import { Search, Plus, Trash2, Activity, Eye, MessageSquare, TrendingUp, Clock } from "lucide-react"
 
 interface Keyword {
@@ -31,8 +26,8 @@ export function Dashboard() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-background">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      <div className="flex items-center justify-center min-h-screen bg-base-100">
+        <span className="loading loading-spinner loading-lg"></span>
       </div>
     )
   }
@@ -67,175 +62,171 @@ export function Dashboard() {
   const activeKeywords = keywords.filter(k => k.status === "active").length
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-base-100">
       <div className="max-w-7xl mx-auto p-8 space-y-8">
         <div className="text-center space-y-4">
-          <div className="inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-            <Activity className="h-4 w-4 mr-2" />
+          <div className="badge badge-lg badge-primary gap-2">
+            <Activity className="h-4 w-4" />
             Reddit Monitor
           </div>
-          <h1 className="text-4xl font-bold text-foreground">
+          <h1 className="text-4xl font-bold">
             Keyword Monitoring Dashboard
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-base-content/60 max-w-2xl mx-auto">
             Track and analyze keyword mentions across your favorite subreddits in real-time
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="border border-gray-200/60 shadow-xl hover:shadow-2xl transition-all duration-300">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Active Keywords</CardTitle>
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Activity className="h-4 w-4 text-primary" />
+          <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+            <div className="card-body">
+              <div className="flex items-center justify-between">
+                <h2 className="card-title text-sm">Active Keywords</h2>
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Activity className="h-4 w-4 text-primary" />
+                </div>
               </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-foreground">{activeKeywords}</div>
-              <p className="text-xs text-muted-foreground mt-1">Currently monitoring</p>
-            </CardContent>
-          </Card>
+              <div className="text-3xl font-bold">{activeKeywords}</div>
+              <p className="text-xs text-base-content/60">Currently monitoring</p>
+            </div>
+          </div>
 
-          <Card className="border border-gray-200/60 shadow-xl hover:shadow-2xl transition-all duration-300">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Mentions</CardTitle>
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <MessageSquare className="h-4 w-4 text-primary" />
+          <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+            <div className="card-body">
+              <div className="flex items-center justify-between">
+                <h2 className="card-title text-sm">Total Mentions</h2>
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <MessageSquare className="h-4 w-4 text-primary" />
+                </div>
               </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-foreground">{totalMentions}</div>
-              <p className="text-xs text-muted-foreground mt-1">
+              <div className="text-3xl font-bold">{totalMentions}</div>
+              <p className="text-xs text-base-content/60">
                 <TrendingUp className="h-3 w-3 inline mr-1" />
                 All time
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <Card className="border border-gray-200/60 shadow-xl hover:shadow-2xl transition-all duration-300">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Subreddits</CardTitle>
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Eye className="h-4 w-4 text-primary" />
+          <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+            <div className="card-body">
+              <div className="flex items-center justify-between">
+                <h2 className="card-title text-sm">Subreddits</h2>
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Eye className="h-4 w-4 text-primary" />
+                </div>
               </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-foreground">{new Set(keywords.map(k => k.subreddit)).size}</div>
-              <p className="text-xs text-muted-foreground mt-1">Communities tracked</p>
-            </CardContent>
-          </Card>
+              <div className="text-3xl font-bold">{new Set(keywords.map(k => k.subreddit)).size}</div>
+              <p className="text-xs text-base-content/60">Communities tracked</p>
+            </div>
+          </div>
         </div>
 
-        <Card className="shadow-xl border border-gray-200/60">
-          <CardHeader>
-            <CardTitle className="text-xl font-semibold flex items-center gap-2">
+        <div className="card bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title flex items-center gap-2">
               <Plus className="h-5 w-5 text-primary" />
               Add New Keyword
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-6">
+            </h2>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Input
+              <input
+                type="text"
                 placeholder="Enter keyword to monitor..."
                 value={newKeyword}
                 onChange={(e) => setNewKeyword(e.target.value)}
-                className="flex-1 h-12 text-base border-gray-200/60 shadow-sm"
+                className="input input-bordered flex-1"
               />
-              <Select value={selectedSubreddit} onValueChange={setSelectedSubreddit}>
-                <SelectTrigger className="sm:w-64 h-12 border-gray-200/60 shadow-sm">
-                  <SelectValue placeholder="Select subreddit" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="webdev">r/webdev</SelectItem>
-                  <SelectItem value="reactjs">r/reactjs</SelectItem>
-                  <SelectItem value="programming">r/programming</SelectItem>
-                  <SelectItem value="javascript">r/javascript</SelectItem>
-                  <SelectItem value="nextjs">r/nextjs</SelectItem>
-                  <SelectItem value="technology">r/technology</SelectItem>
-                  <SelectItem value="startups">r/startups</SelectItem>
-                </SelectContent>
-              </Select>
-              <Button
+              <select
+                value={selectedSubreddit}
+                onChange={(e) => setSelectedSubreddit(e.target.value)}
+                className="select select-bordered sm:w-64"
+              >
+                <option value="" disabled>Select subreddit</option>
+                <option value="webdev">r/webdev</option>
+                <option value="reactjs">r/reactjs</option>
+                <option value="programming">r/programming</option>
+                <option value="javascript">r/javascript</option>
+                <option value="nextjs">r/nextjs</option>
+                <option value="technology">r/technology</option>
+                <option value="startups">r/startups</option>
+              </select>
+              <button
                 onClick={addKeyword}
                 disabled={!newKeyword.trim() || !selectedSubreddit}
-                className="h-12 px-8 shadow-lg hover:shadow-xl transition-all duration-300 bg-black text-white hover:bg-black/90"
+                className="btn btn-primary"
               >
-                <Plus className="h-4 w-4 mr-2" />
+                <Plus className="h-4 w-4" />
                 Add Keyword
-              </Button>
+              </button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        <Card className="shadow-xl border border-gray-200/60">
-          <CardHeader>
-            <CardTitle className="text-xl font-semibold flex items-center gap-2">
+        <div className="card bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title flex items-center gap-2">
               <Search className="h-5 w-5 text-primary" />
               Monitored Keywords
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-6">
+            </h2>
             <div className="space-y-4">
               {keywords.length === 0 ? (
                 <div className="text-center py-16">
-                  <div className="mx-auto w-24 h-24 bg-muted rounded-full flex items-center justify-center mb-6">
-                    <Search className="h-12 w-12 text-muted-foreground" />
+                  <div className="mx-auto w-24 h-24 bg-base-300 rounded-full flex items-center justify-center mb-6">
+                    <Search className="h-12 w-12 opacity-50" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">No keywords yet</h3>
-                  <p className="text-muted-foreground max-w-md mx-auto">
+                  <h3 className="text-xl font-semibold mb-2">No keywords yet</h3>
+                  <p className="text-base-content/60 max-w-md mx-auto">
                     Start monitoring Reddit conversations by adding your first keyword above
                   </p>
                 </div>
               ) : (
                 keywords.map((keyword) => (
-                  <div key={keyword.id} className="group bg-card border border-gray-200/60 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
-                    <div className="flex items-center justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-3">
-                          <h3 className="text-lg font-semibold text-foreground">{keyword.keyword}</h3>
-                          <Badge variant="outline">
-                            r/{keyword.subreddit}
-                          </Badge>
-                          <Badge variant={keyword.status === "active" ? "default" : "secondary"}>
-                            {keyword.status === "active" ? "Active" : "Paused"}
-                          </Badge>
-                        </div>
-                        <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                          <div className="flex items-center gap-2">
-                            <MessageSquare className="h-4 w-4 text-primary" />
-                            <span className="font-medium">{keyword.mentions}</span>
-                            <span>mentions</span>
+                  <div key={keyword.id} className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow">
+                    <div className="card-body">
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-3">
+                            <h3 className="text-lg font-semibold">{keyword.keyword}</h3>
+                            <span className="badge badge-outline">
+                              r/{keyword.subreddit}
+                            </span>
+                            <span className={`badge ${keyword.status === "active" ? "badge-primary" : "badge-secondary"}`}>
+                              {keyword.status === "active" ? "Active" : "Paused"}
+                            </span>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4 text-primary" />
-                            <span>Last: {keyword.lastMention}</span>
+                          <div className="flex items-center gap-6 text-sm text-base-content/60">
+                            <div className="flex items-center gap-2">
+                              <MessageSquare className="h-4 w-4 text-primary" />
+                              <span className="font-medium">{keyword.mentions}</span>
+                              <span>mentions</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Clock className="h-4 w-4 text-primary" />
+                              <span>Last: {keyword.lastMention}</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => toggleStatus(keyword.id)}
-                        >
-                          {keyword.status === "active" ? "Pause" : "Resume"}
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => deleteKeyword(keyword.id)}
-                          className="border-destructive text-destructive hover:bg-destructive/10"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
+                        <div className="flex items-center gap-3">
+                          <button
+                            className="btn btn-outline btn-sm"
+                            onClick={() => toggleStatus(keyword.id)}
+                          >
+                            {keyword.status === "active" ? "Pause" : "Resume"}
+                          </button>
+                          <button
+                            className="btn btn-outline btn-sm btn-error"
+                            onClick={() => deleteKeyword(keyword.id)}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 ))
               )}
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   )

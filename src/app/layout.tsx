@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-theme="corporate">
       <body suppressHydrationWarning className='font-primary'>
         <PostHogProvider>
           <Navbar/>

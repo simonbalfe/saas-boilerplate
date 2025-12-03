@@ -1,57 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
-@import "tw-animate-css";
-@custom-variant dark (&:where(.dark, .dark *));
-
-@theme {
-    /* shadcn/ui color tokens - Grayscale Design System */
-    --color-background: 0 0% 100%;
-    --color-foreground: 0 0% 3.9%;
-    --color-card: 0 0% 100%;
-    --color-card-foreground: 0 0% 3.9%;
-    --color-popover: 0 0% 100%;
-    --color-popover-foreground: 0 0% 3.9%;
-    --color-primary: 0 0% 9%;
-    --color-primary-foreground: 0 0% 98%;
-    --color-secondary: 0 0% 96.1%;
-    --color-secondary-foreground: 0 0% 9%;
-    --color-muted: 0 0% 96.1%;
-    --color-muted-foreground: 0 0% 45.1%;
-    --color-accent: 0 0% 96.1%;
-    --color-accent-foreground: 0 0% 9%;
-    --color-destructive: 0 0% 20%;
-    --color-destructive-foreground: 0 0% 98%;
-    --color-border: 0 0% 89.8%;
-    --color-input: 0 0% 89.8%;
-    --color-ring: 0 0% 20%;
-
-    /* Font family */
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-
-    /* Border radius */
-    --radius-lg: 0.5rem;
-    --radius-md: calc(var(--radius-lg) - 2px);
-    --radius-sm: calc(var(--radius-lg) - 4px);
-}
-
-@theme dark {
-    --color-background: 0 0% 3.9%;
-    --color-foreground: 0 0% 98%;
-    --color-card: 0 0% 3.9%;
-    --color-card-foreground: 0 0% 98%;
-    --color-popover: 0 0% 3.9%;
-    --color-popover-foreground: 0 0% 98%;
-    --color-primary: 0 0% 98%;
-    --color-primary-foreground: 0 0% 9%;
-    --color-secondary: 0 0% 14.9%;
-    --color-secondary-foreground: 0 0% 98%;
-    --color-muted: 0 0% 14.9%;
-    --color-muted-foreground: 0 0% 63.9%;
-    --color-accent: 0 0% 14.9%;
-    --color-accent-foreground: 0 0% 98%;
-    --color-destructive: 0 0% 80%;
-    --color-destructive-foreground: 0 0% 9%;
-    --color-border: 0 0% 14.9%;
-    --color-input: 0 0% 14.9%;
-    --color-ring: 0 0% 80%;
+@plugin "daisyui" {
+  themes: all;
 }

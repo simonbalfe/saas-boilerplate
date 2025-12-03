@@ -2,21 +2,6 @@
 
 import { useState, useEffect, Suspense } from "react"
 import { authClient } from "@/src/services/better-auth/auth-client"
-import { Button } from "@/src/components/ui/button"
-import { Input } from "@/src/components/ui/input"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/src/components/ui/card"
-import {
-  Field,
-  FieldGroup,
-  FieldLabel,
-} from "@/src/components/ui/field"
-import { Alert, AlertDescription } from "@/src/components/ui/alert"
 import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { Loader2 } from "lucide-react"
@@ -86,89 +71,89 @@ function ResetPasswordForm() {
 
   if (success) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-background p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>Password Reset Successful</CardTitle>
-            <CardDescription>
+      <div className="flex min-h-screen items-center justify-center bg-base-200 p-4">
+        <div className="card bg-base-100 w-full max-w-md shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title">Password Reset Successful</h2>
+            <p className="text-base-content/60">
               Your password has been updated. Redirecting to login...
-            </CardDescription>
-          </CardHeader>
-        </Card>
+            </p>
+          </div>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>Create New Password</CardTitle>
-          <CardDescription>
+    <div className="flex min-h-screen items-center justify-center bg-base-200 p-4">
+      <div className="card bg-base-100 w-full max-w-md shadow-xl">
+        <div className="card-body">
+          <h2 className="card-title">Create New Password</h2>
+          <p className="text-base-content/60">
             Enter your new password below
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+          </p>
           <form onSubmit={handleSubmit}>
             {error && (
-              <Alert variant="destructive" className="mb-4">
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
+              <div role="alert" className="alert alert-error">
+                <span>{error}</span>
+              </div>
             )}
-            <FieldGroup>
-              <Field>
-                <FieldLabel htmlFor="newPassword">New Password</FieldLabel>
-                <Input
-                  id="newPassword"
-                  type="password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="Enter new password"
-                  required
-                  disabled={!token || !!error}
-                  minLength={8}
-                />
-              </Field>
-              <Field>
-                <FieldLabel htmlFor="confirmPassword">
-                  Confirm Password
-                </FieldLabel>
-                <Input
-                  id="confirmPassword"
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm new password"
-                  required
-                  disabled={!token || !!error}
-                  minLength={8}
-                />
-              </Field>
-              <Field>
-                <Button
-                  type="submit"
-                  disabled={loading || !token || !!error}
-                  className="w-full"
+            <div className="form-control">
+              <label className="label" htmlFor="newPassword">
+                <span className="label-text">New Password</span>
+              </label>
+              <input
+                id="newPassword"
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="Enter new password"
+                required
+                disabled={!token || !!error}
+                minLength={8}
+                className="input input-bordered w-full"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label" htmlFor="confirmPassword">
+                <span className="label-text">Confirm Password</span>
+              </label>
+              <input
+                id="confirmPassword"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm new password"
+                required
+                disabled={!token || !!error}
+                minLength={8}
+                className="input input-bordered w-full"
+              />
+            </div>
+            <div className="form-control mt-6">
+              <button
+                type="submit"
+                disabled={loading || !token || !!error}
+                className="btn btn-primary w-full"
+              >
+                {loading ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  "Reset Password"
+                )}
+              </button>
+              <div className="text-center text-sm text-base-content/60 mt-4">
+                <Link
+                  href="/auth"
+                  className="link link-hover"
                 >
-                  {loading ? (
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  ) : (
-                    "Reset Password"
-                  )}
-                </Button>
-                <div className="text-center text-sm text-muted-foreground">
-                  <Link
-                    href="/auth"
-                    className="underline underline-offset-4 hover:text-primary"
-                  >
-                    Back to login
-                  </Link>
-                </div>
-              </Field>
-            </FieldGroup>
+                  Back to login
+                </Link>
+              </div>
+            </div>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }
@@ -177,13 +162,13 @@ export const ResetPassword = () => {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center">
-          <Card className="w-full max-w-md">
-            <CardHeader>
-              <CardTitle>Loading...</CardTitle>
-              <CardDescription>Please wait</CardDescription>
-            </CardHeader>
-          </Card>
+        <div className="flex min-h-screen items-center justify-center bg-base-200">
+          <div className="card bg-base-100 w-full max-w-md shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title">Loading...</h2>
+              <p className="opacity-60">Please wait</p>
+            </div>
+          </div>
         </div>
       }
     >
