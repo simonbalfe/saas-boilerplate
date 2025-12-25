@@ -33,7 +33,6 @@ function PaymentPageContent() {
              
              autoRedirectAttempted.current = true
              handleCheckout().then(() => {
-                 
                  setShowCard(true)
              })
         }
